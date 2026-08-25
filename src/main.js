@@ -12,3 +12,25 @@ document.getElementById('date').textContent = now.toLocaleDateString('en-US', op
 
 setInterval(updateTime, 1000);
 updateTime();
+
+
+const bgUpload = document.getElementById('bg-upload');
+const savedBg = localStorage.getItem('customBg');
+if (savedBg) {
+  document.body.style.backgroundImage = `url(${savedBg})`;
+}
+
+if (bgUpload) {
+  bgUpload.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const imageData = event.target.result;
+      document.body.style.backgroundImage = `url(${imageData})`;
+      localStorage.setItem('customBg', imageData);
+    };
+    reader.readAsDataURL(file);
+  }
+});
+}
