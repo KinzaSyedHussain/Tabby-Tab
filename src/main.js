@@ -15,9 +15,24 @@ updateTime();
 
 
 const bgUpload = document.getElementById('bg-upload');
+const bgColor = document.getElementById('bg-color')
 const savedBg = localStorage.getItem('customBg');
+const savedBgColor = localStorage.getItem('customBgColor');
 if (savedBg) {
   document.body.style.backgroundImage = `url(${savedBg})`;
+} else if (savedBgColor) {
+  document.body.style.backgroundColor = savedBgColor;
+  bgColor.value = savedBgColor;
+}
+
+if (bgColor) {
+  bgColor.addEventListener('change', (e) => {
+    const color = e.target.value;
+    document.body.style.backgroundImage = 'none';
+    document.body.style.backgroundColor = color;
+    localStorage.setItem('customBgColor', color);
+    localStorage.removeItem('customBgImage');
+  });
 }
 
 if (bgUpload) {

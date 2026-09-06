@@ -13,9 +13,13 @@
       <form action="https://www.google.com/search" method="GET" class="search-box">
         <input type="text" name="q" placeholder="Search the web..." autofocus autocomplete="off"/>
       </form>
+      <div class="background">
+        <label for="bg-color" class="bg-btn" title="Change Color" onclick="document.getElementById('bg-color').click()">Color</label>
+        <input type="color" id="bg-color" value="#09090b" style="display: none;" />
+        <label for="bg-upload" class="bg-btn" title="Change Background">Change Background</label>
+        <input type="file" id="bg-upload" accept="image/*" style="display: none;">
+      </div>
 
-      <label for="bg-upload" class="bg-btn" title="Change Background">Change Background</label>
-      <input type="file" id="bg-upload" accept="image/*" hidden/>
 
     <script type="module" src="/src/main.js"></script>
     <link rel="stylesheet" href="./src/style.css" />
