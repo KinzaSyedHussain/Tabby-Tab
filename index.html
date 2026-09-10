@@ -6,13 +6,25 @@
     <title>tabby Tab</title>
 </head>
   <body>
-    <div class="container">
+    <div class="time-widget">
       <div id="clock" class="clock">02:40:00</div>
       <div id="date" class="date">Loading date...</div>
+    </div>
 
+    <div class="container">
+      <h1 class="title">Tabby</h1>
       <form action="https://www.google.com/search" method="GET" class="search-box">
         <input type="text" name="q" placeholder="Search the web..." autofocus autocomplete="off"/>
       </form>
+    </div>
+
+    <div class="shortcuts">
+      <a href="https://github.com" class="shortcut">Github</a>
+      <a href="https://youtube.com" class="shortcut">YouTube</a>
+      <a href="https://hackclub.com" class="shortcut">Hack Club</a>
+      <a href="https://gmail.com" class="shortcut">Gmail</a>
+    </div>
+
       <div class="background">
         <label for="bg-color" class="bg-btn" title="Change Color" onclick="document.getElementById('bg-color').click()">Color</label>
         <input type="color" id="bg-color" value="#09090b" style="display: none;" />
