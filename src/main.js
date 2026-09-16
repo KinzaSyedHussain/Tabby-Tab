@@ -51,11 +51,11 @@ if (bgUpload) {
 }
 
 const defaultShortcuts = [
-  { title: 'GitHub', url: 'https://github.com'},
-  { title: 'Youtube', url: 'https://youtube.com'},
+  { title: 'GitHub', url: 'https://github.com' },
+  { title: 'YouTube', url: 'https://youtube.com' },
   { title: 'Hack Club', url: 'https://hackclub.com' },
-  { title: 'Gmail', url: 'https://gmail.com'}
-]
+  { title: 'Gmail', url: 'https://gmail.com' }
+];
 
 let shortcuts = JSON.parse(localStorage.getItem('tabbyShortcuts')) || defaultShortcuts;
 
@@ -71,33 +71,41 @@ function getFaviconUrl(url) {
 function renderShortcuts() {
   const container = document.getElementById('shortcutlist');
   if (!container) return;
+  
   container.innerHTML = '';
 
+  shortcuts.forEach((shortcut, index) => {
+    const link = document.createElement('a');
+    
+    let formattedUrl = shortcut.url.trim();
+    if (!formattedUrl.startsWith('http://') && !formattedUrl.startsWith('https://')) {
+      formattedUrl = 'https://' + formattedUrl;
+    }
 
-shortcuts.forEach((shortcut, index) => {
-  const link = document.createElement('a');
-  link.href = shortcuts.url;
-  link.className = 'shortcut';
-  link.title = shortcut.title;
+    link.href = formattedUrl;
+    link.className = 'shortcut';
+    link.title = shortcut.title;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
 
-  const img = document.createElement('img');
-  img.src = getFaviconUrl(shortcut.url);
-  img.alt = shortcut.title;
+    const img = document.createElement('img');
+    img.src = getFaviconUrl(formattedUrl);
+    img.alt = shortcut.title;
 
-  const delBtn = document.createElement('button');
-  delBtn.className = 'delete-btn';
-  delBtn.textContent = 'x';
-  delBtn.onclick = (e) => {
-    e.preventDefault();
-    shortcuts.splice(index, 1);
-    saveShortcuts();
-  };
+    const delBtn = document.createElement('button');
+    delBtn.className = 'delete-btn';
+    delBtn.textContent = '×';
+    delBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      shortcuts.splice(index, 1);
+      saveShortcuts();
+    };
 
-  link.appendChild(img);
-  link.appendChild(delBtn);
-  container.appendChild(link)
-});
-
+    link.appendChild(img);
+    link.appendChild(delBtn);
+    container.appendChild(link);
+  });
 }
 
 function saveShortcuts() {
@@ -110,10 +118,14 @@ const addBtn = document.getElementById('addshortcut-btn');
 const closeBtn = document.getElementById('close-modal-btn');
 const form = document.getElementById('shortcut-form');
 
-addBtn.addEventListener('click', () => modal.showModal());
-closeBtn.addEventListener('click', () => modal.close());
+if (addBtn && modal) {
+  addBtn.addEventListener('click', () => modal.showModal());
+}
+if ( closeBtn && modal) {
+  closeBtn.addEventListener('click', () => modal.close());
+}
 
-
+if (form) {
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const title = document.getElementById('shortcut-title').value.trim();
@@ -130,5 +142,5 @@ form.addEventListener('submit', (e) => {
     modal.close();
   }
 });
-
+}
 renderShortcuts();
