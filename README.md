@@ -4,18 +4,23 @@
 
 Simple, Modern, and Amazing Minimal Tab!
 
-features
+**Features**
 1. You can change color of background not needed to download a pic for color.
 2. You can also set a wallpaper or GIF.
 3. Search for whatever you want
 
-Made with
+**Made with**
 1. HTML
 2. JavaScript
 3. CSS
 
-How to run?
+**How to run?**
 
 **Just run this command**
 
 ```npm run dev```
+
+**Want to try?**
+
+link:
+https://tabby-tab.vercel.app/
