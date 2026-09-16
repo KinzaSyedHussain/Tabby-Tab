@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tabby Tab</title>
+    <title>Tabby Tab</title>
+    <link rel="stylesheet" href="./src/style.css" />
 </head>
   <body>
     <div class="time-widget">
@@ -16,14 +17,13 @@
       <form action="https://www.google.com/search" method="GET" class="search-box">
         <input type="text" name="q" placeholder="Search the web..." autofocus autocomplete="off"/>
       </form>
+
+      <div class="shortcutpic">
+        <div id="shortcutlist" class="shortcuts"></div>
+        <button id="addshortcut-btn" class="addshortcut-btn" title="Add Shortcut">+</button>
+      </div>
     </div>
 
-    <div class="shortcuts">
-      <a href="https://github.com" class="shortcut">Github</a>
-      <a href="https://youtube.com" class="shortcut">YouTube</a>
-      <a href="https://hackclub.com" class="shortcut">Hack Club</a>
-      <a href="https://gmail.com" class="shortcut">Gmail</a>
-    </div>
 
       <div class="background">
         <label for="bg-color" class="bg-btn" title="Change Color" onclick="document.getElementById('bg-color').click()">Color</label>
@@ -32,8 +32,18 @@
         <input type="file" id="bg-upload" accept="image/*" style="display: none;">
       </div>
 
+      <dialog id="shortcut-modal" class="shortcut-modal">
+        <form id="shortcut-form" method="dialog">
+          <h3>Add New Shortcut</h3>
+          <input type="text" id="shortcut-title" placeholder="Title (e.g., GitHub)" required />
+          <input type="url" id="shortcut-url" placeholder="URL (e.g., https://github.com)" required />
+          <div class="modal-buttons">
+            <button type="button" id="close-modal-btn">Cancel</button>
+            <button type="submit" id="save-shortcut-btn">Save</button>
+          </div>
+        </form>
+      </dialog>
 
     <script type="module" src="/src/main.js"></script>
-    <link rel="stylesheet" href="./src/style.css" />
   </body>
 </html>
